@@ -14,6 +14,7 @@ def generate_parent (length):
         
     return ''.join(genes)
 
+
 def get_fitness(guess):
     return sum(1 for expected, actual in zip(target, guess)
                if expected == actual)
@@ -54,6 +55,16 @@ bestFitness = get_fitness(bestParent)
 display(bestParent)
 
 
+while True:
+    child = mutate(bestParent)
+    childFitness = get_fitness(child) 
+    if bestFitness >= childFitness:
+        continue
+    display(child)
+    if childFitness >= len(bestParent):
+        break
+    bestFitness = childFitness
+    bestParent = child
 
 
 
